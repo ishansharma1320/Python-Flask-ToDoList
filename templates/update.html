@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block body %} 
+<div class="container d-flex flex-column align-items-center">
+   <div class="p-3 display-4"> Update Task </div>
+
+   <div class="p-3">
+
+    <form action="/update/{{task.id}}" method="POST" class="row g-3">
+        <div class="col-auto">
+          <label for="content" class="visually-hidden">Content</label>
+          <input type="text" class="form-control" id="content" name="content" placeholder="Ex.. Dishes, etc. " value="{{task.content}}">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Update</button>
+        </div>
+      </form>
+   </div>
+  </div>
+{% endblock %}

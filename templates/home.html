@@ -24,7 +24,7 @@
                 <td>{{task.date_created.date()}}</td>
                 <td>
                     <a role="button" href="/delete/{{task.id}}" class="btn btn-danger" style="width: 5em; margin-right: 1em;"> Delete</a>
-                    <a role="button" class="btn btn-warning" style="width: 5em;"> Update</a>
+                    <a role="button" href="/update/{{task.id}}" class="btn btn-warning" style="width: 5em;"> Update</a>
                 </td>
             </tr>
             {% endfor%}
@@ -39,7 +39,7 @@
           <input type="text" class="form-control" id="content" name="content" placeholder="Ex.. Dishes, etc. ">
         </div>
         <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          <button type="submit" class="btn btn-primary mb-3">Add Task</button>
         </div>
       </form>
    </div>

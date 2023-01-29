@@ -1,6 +1,7 @@
 from flask import Flask, render_template,request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import traceback
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todolist.db'
@@ -41,6 +42,20 @@ def deleteTask(id):
         return redirect('/')
     except:
         return 'Problem in Deleting'
+    
+@app.route('/update/<int:id>',methods=['GET','POST'])
+def updateTask(id):
+    task_update = ToDoListModel.query.get_or_404(id)    
+    if request.method == 'GET':
+        return render_template('update.html',task=task_update)
+    else:
+        task_update.content = request.form['content']
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            print(traceback.format_exc())
+            return 'Problem in Updating'
     
 if __name__ == '__main__':
     app.run(debug=True)
