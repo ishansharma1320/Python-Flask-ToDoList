@@ -1,5 +1,46 @@
 {% extends 'index.html' %}
 
 {% block body %} 
-    <h1 class="display-1">Hello World using HTML & Flask</h1>
+<div class="container d-flex flex-column align-items-center">
+   <div class="p-3 align-self-stretch">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if tasks|length == 0%}
+            <tr>
+                <td colspan="3" class="text-center"> No Data</td>
+            </tr>
+            {% endif %}
+            {% for task in tasks %}
+            <tr class="text-center">
+                <td>{{task.content}}</td>
+                <td>{{task.date_created.date()}}</td>
+                <td>
+                    <a role="button" class="btn btn-warning" style="width: 5em; margin-right: 1em;"> Delete</a>
+                    <a role="button" class="btn btn-info" style="width: 5em;"> Update</a>
+                </td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+   </div>
+   <div class="p-3">
+
+    <form action="/" method="POST" class="row g-3">
+        <div class="col-auto">
+          <label for="content" class="visually-hidden">Content</label>
+          <input type="text" class="form-control" id="content" name="content" placeholder="Ex.. Dishes, etc. ">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+      </form>
+   </div>
+  </div>
 {% endblock %}
