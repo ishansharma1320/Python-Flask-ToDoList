@@ -30,5 +30,17 @@ def getToDoList():
         tasks = ToDoListModel.query.order_by(ToDoListModel.date_created).all()
         return render_template('home.html',tasks=tasks)
 
+
+@app.route('/delete/<int:id>', methods=['GET'])
+def deleteTask(id):
+    task_delete = ToDoListModel.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'Problem in Deleting'
+    
 if __name__ == '__main__':
     app.run(debug=True)
